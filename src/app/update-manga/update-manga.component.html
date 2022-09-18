@@ -1,0 +1,18 @@
+<div class="form-container">
+    <form [formGroup]="updateMangaForm" (ngSubmit)="updateForm()">
+        <label>Manga </label>
+        <input type="text" formControlName="name">
+        <label>Mangaka </label>
+        <input type="text" formControlName="author">
+        <label>Genre </label>
+        <select formControlName="genre">
+            <option *ngFor="let genre of mangaGenres" [value]="genre">
+                {{ genre }}
+            </option>
+        </select>
+        <!-- <input type="text" formControlName="genre"> -->
+        <label>Note </label>
+        <input type="text" formControlName="note">
+        <input type="submit" value="update">
+    </form>
+</div>

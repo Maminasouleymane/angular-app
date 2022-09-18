@@ -1,0 +1,17 @@
+<div class="form-container">
+    <form [formGroup]="createForm" (ngSubmit)="onCreate()">
+        <label>Manga </label>
+        <input type="text" formControlName="name">
+        <label>Mangaka </label>
+        <input type="text" formControlName="author">
+        <label>Genre </label>
+        <select formControlName="genre">
+            <option *ngFor="let option of options">
+                {{ option }}
+            </option>
+        </select>
+        <label>Note </label>
+        <input type="text" formControlName="note">
+        <input type="submit" value="Add">
+    </form>
+</div>

@@ -1,0 +1,15 @@
+.header {
+    /* top: -10px !important; */
+    height: 10vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 12.4px;
+}
+h1:hover{
+    cursor: pointer;
+}
+

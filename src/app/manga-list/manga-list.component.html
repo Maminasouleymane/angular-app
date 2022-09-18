@@ -1,0 +1,28 @@
+<div class="list-container">
+    <div class="manga-box" *ngFor="let manga of availableManga; let i = index">
+        <div class="data-container">
+            <H1>{{ manga.name}}</H1>
+            <div class="information">
+                <label for="">Mangaka : </label>
+                <strong>{{ manga.author}}</strong>
+
+            </div>
+            <div class="information">
+                <label for="">Genre :</label>
+                <strong>{{ manga.genre}}</strong>
+
+            </div>
+            <div class="information">
+                <label for="">Note :</label>
+                <strong>{{ manga.note}}</strong>
+
+            </div>
+        </div>
+        <div class="btn-container">
+            <div class="btn-groupe">
+                <a class="btn btn-update" (click)="onNavigateToUpdatePage(manga.id)">update</a>
+                <a class="btn btn-delete" (click)="onDelete(manga.id)">delete</a>
+            </div>
+        </div>
+    </div>
+</div>
