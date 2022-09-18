@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { MangaService } from '../manga.service';
+import { Router } from '@angular/router';
 import { manga } from '../manga';
 
 @Component({
@@ -17,7 +18,9 @@ export class CreateMangaComponent implements OnInit {
   newManga: manga = {};
 
   options = ['Shonen', 'Seinen', 'Adventure', 'Horror', 'Sport', 'Others']
-  constructor(private mangaService: MangaService, private formBuilder: FormBuilder) { }
+
+  defaultVal = 'Shonen'
+  constructor(private mangaService: MangaService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(){
     this.createForm = new FormGroup({
@@ -34,6 +37,7 @@ export class CreateMangaComponent implements OnInit {
     this.newManga.genre = this.createForm.get('genre')?.value; 
     this.newManga.note = this.createForm.get('note')?.value; 
 
-    this.mangaService.addMangaFromApi(this.newManga);
+    this.mangaService.addNewManga(this.newManga);
+    this.router.navigate(['/manga-list']) 
   }
 }

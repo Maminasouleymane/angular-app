@@ -19,7 +19,7 @@ export class UpdateMangaComponent implements OnInit {
 
   // @ts-ignore
   currentManga: manga = {};
-  theId: string =this.route.snapshot.params["id"]; 
+  theId: number  =this.route.snapshot.params["id"]; 
   ngOnInit() {
     this.updateMangaForm = new FormGroup({
       'name': new FormControl(null),
@@ -28,12 +28,12 @@ export class UpdateMangaComponent implements OnInit {
       'note': new FormControl(null),
     })
 
-    this.mangaService.getById(this.theId).subscribe((data: manga) => {
-      this.updateMangaForm.controls['name'].patchValue(data.name); 
-      this.updateMangaForm.controls['author'].patchValue(data.author); 
-      this.updateMangaForm.controls['genre'].patchValue(data.genre); 
-      this.updateMangaForm.controls['note'].patchValue(data.note); 
-    });
+    this.currentManga = this.mangaService.getById(this.theId)
+  
+      this.updateMangaForm.controls['name'].patchValue(this.currentManga.name); 
+      this.updateMangaForm.controls['author'].patchValue(this.currentManga.author); 
+      this.updateMangaForm.controls['genre'].patchValue(this.currentManga.genre); 
+      this.updateMangaForm.controls['note'].patchValue(this.currentManga.note); 
   }
 
   updateForm(){
@@ -42,12 +42,8 @@ export class UpdateMangaComponent implements OnInit {
     this.currentManga.genre = this.updateMangaForm.get('genre')?.value; 
     this.currentManga.note = this.updateMangaForm.get('note')?.value; 
 
-    this.mangaService.updateMangaFromApi(this.theId, this.currentManga)
-      .subscribe((response: any) => {
-        if(response === "updated"){
-          this.router.navigate(['/manga-list']) 
-        }
-      })
+    this.mangaService.updateManga(this.theId, this.currentManga)
+        this.router.navigate(['/manga-list'])  
   }
 
 }

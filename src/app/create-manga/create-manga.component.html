@@ -6,7 +6,7 @@
         <input type="text" formControlName="author">
         <label>Genre </label>
         <select formControlName="genre">
-            <option *ngFor="let option of options">
+            <option *ngFor="let option of options" [selected]="option">
                 {{ option }}
             </option>
         </select>

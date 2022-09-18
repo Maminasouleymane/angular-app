@@ -21,20 +21,19 @@ export class MangaListComponent implements OnInit {
   constructor(private managaService: MangaService, private router: Router) { }
 
   ngOnInit() {
-    this.managaService.getMangaFromApi().subscribe((result) => {
-      this.availableManga = result
-    })
+    this.availableManga = this.managaService.getAll();
+    console.log(this.managaService.getAll())
   }
 
   onDelete(id: any) {
     // this.managaService.deleteManga(id);
-    this.managaService.deleteMangaFromApi(id)
+    this.managaService.deleteManga(id)
     // console.log(this.managaService.deleteMangaFromApi(id))
   }
-  onUpdate(index: number) {
-    this.availableManga = [...this.managaService.updateManga(index)]
-    console.log(this.managaService.updateManga(index))
-  }
+  // onUpdate(index: number) {
+  //   this.availableManga = [...this.managaService.updateManga(index)]
+  //   console.log(this.managaService.updateManga(index))
+  // }
 
   onNavigateToUpdatePage(page: any ) {
     // console.log(this.router.navigate([`/update/${page.toString}`]))
